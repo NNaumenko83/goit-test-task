@@ -8,10 +8,10 @@ const SharedLayout = () => {
     <Container>
       <Header>
         <Logo>GoIt Test Task</Logo>
-        <p>Test</p>
+
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/template">Template</Link>
+          <Link to="/tweets">Tweets</Link>
         </nav>
       </Header>
       <Suspense fallback={<div>Loading...</div>}>
