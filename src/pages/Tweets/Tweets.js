@@ -1,13 +1,14 @@
-import { UsersList } from "components/TweetsList/UsersList";
+import { Button } from "components/Button/Button";
+import { UsersList } from "components/UsersList/UsersList";
 import React from "react";
 
-const Template = () => {
+const Tweets = () => {
   return (
     <>
-      <div>Tweets</div>
       <UsersList />
+      <Button type="button">Load more</Button>
     </>
   );
 };
 
-export default Template;
+export default Tweets;

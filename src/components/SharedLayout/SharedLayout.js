@@ -8,6 +8,7 @@ import {
   Link,
   Logo,
   Main,
+  MainContainer,
 } from "./SharedLayout.styled";
 import { Suspense } from "react";
 
@@ -24,11 +25,11 @@ const SharedLayout = () => {
         </HeaderContainer>
       </Header>
       <Main>
-        <Container>
+        <MainContainer>
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        </Container>
+        </MainContainer>
       </Main>
 
       <Footer>

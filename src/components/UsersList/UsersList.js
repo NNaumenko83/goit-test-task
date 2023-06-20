@@ -1,9 +1,11 @@
 // import { Task } from "components/Task/Task";
-// import css from "./TaskList.module.css";
+import { UsersItem } from "components/UsersItem/UsersItem";
+
 // import { useSelector } from "react-redux";
 // import { statusFilters } from "redux/constants";
 // import { getStatusFilter } from "redux/selectors";
 import { useUsers } from "hooks/useUsers";
+import { UsersListStyled } from "./UsersList.styled";
 
 // const getVisibleTasks = (tasks = [], statusFilter) => {
 //   switch (statusFilter) {
@@ -26,14 +28,11 @@ export const UsersList = () => {
 
   //   const visibleTasks = getVisibleTasks(query.data, statusFilter);
 
-  return <p>{JSON.stringify(users, null, 2)}</p>;
-  // return (
-  //   <ul className={css.list}>
-  //     {users.map((users) => (
-  //       <li className={css.listItem} key={users.id}>
-  //         <Task task={users} />
-  //       </li>
-  //     ))}
-  //   </ul>
-  // );
+  return (
+    <UsersListStyled>
+      {users.map((user) => (
+        <UsersItem user={user} key={users.id} />
+      ))}
+    </UsersListStyled>
+  );
 };
