@@ -3,19 +3,22 @@ import { AvatarWrapper, UserCard } from "./UsersItem.styled";
 import { Button } from "components/Button/Button";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import {
   addFollowingUser,
   deleteFollowingUser,
 } from "redux/followedUsersSlice";
+import { useDispatch } from "react-redux";
 
 export const UsersItem = ({ user }) => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   const addFollowerMutation = useMutation({
     mutationFn: increaseFollowers,
     onSuccess: () => {
       // Invalidate and refetch
-
+      dispatch(addFollowingUser(user));
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
@@ -24,6 +27,7 @@ export const UsersItem = ({ user }) => {
     mutationFn: decreaseFollowers,
     onSuccess: () => {
       // Invalidate and refetch
+      dispatch(deleteFollowingUser(user.id));
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });

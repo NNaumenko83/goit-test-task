@@ -7,6 +7,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { store } from "redux/store";
+import { Provider } from "react-redux";
 
 const Home = lazy(() => import("../pages/Home/Home.js"));
 const Tweets = lazy(() => import("../pages/Tweets/Tweets.js"));
@@ -30,14 +32,16 @@ export const App = () => {
       client={queryClient}
       persistOptions={{ persister }}
     >
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="tweets" element={<Tweets />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="tweets" element={<Tweets />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Provider>
     </PersistQueryClientProvider>
   );
 };
