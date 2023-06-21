@@ -4,8 +4,9 @@ import { UsersItem } from "components/UsersItem/UsersItem";
 // import { useSelector } from "react-redux";
 // import { statusFilters } from "redux/constants";
 // import { getStatusFilter } from "redux/selectors";
-import { useUsers } from "hooks/useUsers";
+
 import { UsersListStyled } from "./UsersList.styled";
+import { useEffect } from "react";
 
 // const getVisibleTasks = (tasks = [], statusFilter) => {
 //   switch (statusFilter) {
@@ -20,19 +21,24 @@ import { UsersListStyled } from "./UsersList.styled";
 //   }
 // };
 
-export const UsersList = () => {
-  const { data: users } = useUsers();
-  console.log("users:", users);
+export const UsersList = ({ users }) => {
+  console.log("visibleUsers:", users);
 
+  useEffect(() => {
+    console.log("UsersList");
+  });
+  // console.log("users:", users);
   //   const statusFilter = useSelector(getStatusFilter);
 
   //   const visibleTasks = getVisibleTasks(query.data, statusFilter);
 
   return (
-    <UsersListStyled>
-      {users.map((user) => (
-        <UsersItem user={user} key={users.id} />
-      ))}
-    </UsersListStyled>
+    users && (
+      <UsersListStyled>
+        {users.map((user) => (
+          <UsersItem user={user} key={user.id} />
+        ))}
+      </UsersListStyled>
+    )
   );
 };

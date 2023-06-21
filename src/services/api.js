@@ -12,10 +12,12 @@ export const getUsers = async () => {
 };
 
 export const increaseFollowers = async (user) => {
+  console.log("user:", user);
   try {
     const res = await axios.put(`/users/${user.id}`, {
       followers: user.followers + 1,
     });
+    console.log("res:", res.data);
     return res.data;
   } catch (error) {
     return error.message;
