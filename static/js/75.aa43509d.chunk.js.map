@@ -1,1 +1,1 @@
-{"version":3,"file":"static/js/75.aa43509d.chunk.js","mappings":"gJAMA,UAJa,WACX,OAAO,yBAAK,QACb,C","sources":["pages/Home/Home.js"],"sourcesContent":["import React from 'react';\n\nconst Home = () => {\n  return <div>Home</div>;\n};\n\nexport default Home;\n"],"names":[],"sourceRoot":""}
+{"version":3,"file":"static/js/75.aa43509d.chunk.js","mappings":"gJAMA,UAJa,WACX,OAAO,yBAAK,QACb,C","sources":["pages/Home/Home.js"],"sourcesContent":["import React from \"react\";\n\nconst Home = () => {\n  return <div>Home</div>;\n};\n\nexport default Home;\n"],"names":[],"sourceRoot":""}
