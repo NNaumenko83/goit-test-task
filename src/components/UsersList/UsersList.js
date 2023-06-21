@@ -1,12 +1,14 @@
 // import { Task } from "components/Task/Task";
 import { UsersItem } from "components/UsersItem/UsersItem";
 
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
 // import { statusFilters } from "redux/constants";
 // import { getStatusFilter } from "redux/selectors";
 
 import { UsersListStyled } from "./UsersList.styled";
 import { useEffect } from "react";
+import { getFollowingUsers } from "redux/selectors";
 
 // const getVisibleTasks = (tasks = [], statusFilter) => {
 //   switch (statusFilter) {
@@ -24,9 +26,15 @@ import { useEffect } from "react";
 export const UsersList = ({ users }) => {
   console.log("visibleUsers:", users);
 
+  const followedUsers = useSelector(getFollowingUsers);
+  console.log("followedUsers:", followedUsers);
+
   useEffect(() => {
     console.log("UsersList");
   });
+
+  const isFollowing = (user) =>
+    followedUsers.some((item) => item.id === user.id);
   // console.log("users:", users);
   //   const statusFilter = useSelector(getStatusFilter);
 
@@ -36,7 +44,7 @@ export const UsersList = ({ users }) => {
     users && (
       <UsersListStyled>
         {users.map((user) => (
-          <UsersItem user={user} key={user.id} />
+          <UsersItem user={user} key={user.id} following={isFollowing(user)} />
         ))}
       </UsersListStyled>
     )

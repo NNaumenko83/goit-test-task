@@ -1,3 +1,5 @@
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const followedUsersInitialState = {
@@ -25,7 +27,17 @@ const followedUsersSlice = createSlice({
   },
 });
 
+const persistConfig = {
+  key: "followedUsers",
+  storage,
+};
+
 export const { addFollowingUser, deleteFollowingUser } =
   followedUsersSlice.actions;
 
-export const followedUsersReducer = followedUsersSlice.reducer;
+const followedUsersReducer = followedUsersSlice.reducer;
+
+export const persistedFollowedUsersReducer = persistReducer(
+  persistConfig,
+  followedUsersReducer
+);

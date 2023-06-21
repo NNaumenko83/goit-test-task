@@ -10,7 +10,8 @@ import {
 } from "redux/followedUsersSlice";
 import { useDispatch } from "react-redux";
 
-export const UsersItem = ({ user }) => {
+export const UsersItem = ({ user, following }) => {
+  console.log("following:", following);
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
@@ -47,12 +48,15 @@ export const UsersItem = ({ user }) => {
       <p>{user.tweets} TWEETS</p>
       <p>{user.followers} FOLLOWERS</p>
       <AvatarWrapper></AvatarWrapper>
-      <Button type="button" onClick={onButtonFollowClick}>
-        FOLLOW
-      </Button>
-      <Button type="button" onClick={onButtonUnFollowClick}>
-        FOLLOWING
-      </Button>
+      {!following ? (
+        <Button type="button" onClick={onButtonFollowClick}>
+          FOLLOW
+        </Button>
+      ) : (
+        <Button type="button" onClick={onButtonUnFollowClick}>
+          FOLLOWING
+        </Button>
+      )}
     </UserCard>
   );
 };
