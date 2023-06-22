@@ -10,9 +10,12 @@ import {
   REGISTER,
 } from "redux-persist";
 
+import { persistedFiltersReducer } from "./filterSlice";
+
 export const store = configureStore({
   reducer: {
     followedUsers: persistedFollowedUsersReducer,
+    filters: persistedFiltersReducer,
   },
 
   middleware: (getDefaultMiddleware) => [

@@ -11,7 +11,6 @@ import {
 import { useDispatch } from "react-redux";
 
 export const UsersItem = ({ user, following }) => {
-  console.log("following:", following);
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
 

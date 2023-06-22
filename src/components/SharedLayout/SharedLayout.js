@@ -18,6 +18,7 @@ const SharedLayout = () => {
       <Header>
         <HeaderContainer>
           <Logo>GoIt Test Task</Logo>
+
           <nav>
             <Link to="/">Home</Link>
             <Link to="/tweets">Tweets</Link>
