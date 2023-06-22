@@ -1,4 +1,4 @@
-import { Button } from "components/Button/Button";
+import { ButtonStyled } from "components/Button/Button";
 import { StatusFilter } from "components/StatusFilter/StatusFilter";
 import { UsersList } from "components/UsersList/UsersList";
 import { filterUserByStatus } from "helpers";
@@ -33,9 +33,9 @@ const Tweets = () => {
     <>
       <StatusFilter />
       <UsersList users={visibleUsers} />
-      <Button type="button" onClick={onLoadMoreButtonClick}>
+      <ButtonStyled type="button" onClick={onLoadMoreButtonClick}>
         Load more
-      </Button>
+      </ButtonStyled>
     </>
   );
 };

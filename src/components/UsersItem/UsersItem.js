@@ -7,7 +7,7 @@ import {
   UserInfoAndButtonContainer,
   UserInfoWrapper,
 } from "./UsersItem.styled";
-import { Button } from "components/Button/Button";
+import { Button, ButtonStyled } from "components/Button/Button";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -16,8 +16,10 @@ import {
   deleteFollowingUser,
 } from "redux/followedUsersSlice";
 import { useDispatch } from "react-redux";
+import { useUsers } from "hooks/useUsers";
 
 export const UsersItem = ({ user, following }) => {
+  const { isFetching } = useUsers();
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
@@ -59,21 +61,23 @@ export const UsersItem = ({ user, following }) => {
           <p>{user.followers.toLocaleString("en-GB")} FOLLOWERS</p>
         </UserInfoWrapper>
         {!following ? (
-          <Button
+          <ButtonStyled
             type="button"
             onClick={onButtonFollowClick}
             following={following}
+            loading={isFetching}
           >
             FOLLOW
-          </Button>
+          </ButtonStyled>
         ) : (
-          <Button
+          <ButtonStyled
             type="button"
             onClick={onButtonUnFollowClick}
             following={following}
+            loading={isFetching}
           >
             FOLLOWING
-          </Button>
+          </ButtonStyled>
         )}
       </UserInfoAndButtonContainer>
     </UserCard>

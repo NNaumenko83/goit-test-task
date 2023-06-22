@@ -1,21 +1,30 @@
-import { ButtonStyled } from "./Button.styled";
+import * as React from "react";
 
-export const Button = ({
+import SendIcon from "@mui/icons-material/Send";
+import Button from "@mui/joy/Button";
+
+// import { ButtonStyled } from "./Button.styled";
+
+export const ButtonStyled = ({
   selected = false,
-  // following = true,
+  loading = false,
   type = "button",
+  following = false,
   children,
   ...otherProps
 }) => {
   console.log(otherProps);
   return (
-    <ButtonStyled
+    <Button
       type={type}
-      // color={following ? "#5CD3A8 " : "#EBD8FF"}
-     
+      loading={loading}
+      loadingPosition="end"
+      endDecorator={loading ? <SendIcon /> : null}
+      variant="solid"
+      sx={{ backgroundColor: following ? "#5CD3A8 " : "#EBD8FF" }}
       {...otherProps}
     >
       {children}
-    </ButtonStyled>
+    </Button>
   );
 };

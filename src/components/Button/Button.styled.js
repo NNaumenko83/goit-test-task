@@ -5,7 +5,7 @@ export const ButtonStyled = styled.button`
 
   margin: 0 auto;
   width: 196px;
-  padding: 14px 28px;
+  /* padding: 14px 28px; */
   justify-content: center;
   padding: 8px 12px;
 
