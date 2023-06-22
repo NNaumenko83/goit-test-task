@@ -1,5 +1,12 @@
 import React from "react";
-import { AvatarWrapper, UserCard } from "./UsersItem.styled";
+import {
+  Avatar,
+  AvatarWrapper,
+  CenterLine,
+  UserCard,
+  UserInfoAndButtonContainer,
+  UserInfoWrapper,
+} from "./UsersItem.styled";
 import { Button } from "components/Button/Button";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -42,20 +49,33 @@ export const UsersItem = ({ user, following }) => {
 
   return (
     <UserCard>
-      <p>{user.user}</p>
-      <div>{<img src={user.awatar} alt="user avatar" />}</div>
-      <p>{user.tweets.toLocaleString("en-GB")} TWEETS</p>
-      <p>{user.followers.toLocaleString("en-GB")} FOLLOWERS</p>
-      <AvatarWrapper></AvatarWrapper>
-      {!following ? (
-        <Button type="button" onClick={onButtonFollowClick}>
-          FOLLOW
-        </Button>
-      ) : (
-        <Button type="button" onClick={onButtonUnFollowClick}>
-          FOLLOWING
-        </Button>
-      )}
+      <CenterLine></CenterLine>
+      <AvatarWrapper>
+        <Avatar src={user.avatar} alt="user avatar" />
+      </AvatarWrapper>
+      <UserInfoAndButtonContainer>
+        <UserInfoWrapper>
+          <p>{user.tweets.toLocaleString("en-GB")} TWEETS</p>
+          <p>{user.followers.toLocaleString("en-GB")} FOLLOWERS</p>
+        </UserInfoWrapper>
+        {!following ? (
+          <Button
+            type="button"
+            onClick={onButtonFollowClick}
+            following={following}
+          >
+            FOLLOW
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={onButtonUnFollowClick}
+            following={following}
+          >
+            FOLLOWING
+          </Button>
+        )}
+      </UserInfoAndButtonContainer>
     </UserCard>
   );
 };
