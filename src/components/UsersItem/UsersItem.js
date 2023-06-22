@@ -44,8 +44,8 @@ export const UsersItem = ({ user, following }) => {
     <UserCard>
       <p>{user.user}</p>
       <div>{<img src={user.awatar} alt="user avatar" />}</div>
-      <p>{user.tweets} TWEETS</p>
-      <p>{user.followers} FOLLOWERS</p>
+      <p>{user.tweets.toLocaleString("en-GB")} TWEETS</p>
+      <p>{user.followers.toLocaleString("en-GB")} FOLLOWERS</p>
       <AvatarWrapper></AvatarWrapper>
       {!following ? (
         <Button type="button" onClick={onButtonFollowClick}>
