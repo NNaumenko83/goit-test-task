@@ -1,5 +1,5 @@
 // Imports
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   Container,
   HeaderContainer,
@@ -13,11 +13,23 @@ import {
 import { Suspense } from "react";
 
 const SharedLayout = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isTweetPage = location.pathname === "/tweets";
+  const goHome = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <Header>
         <HeaderContainer>
           <Logo>GoIt Test Task</Logo>
+          {isTweetPage && (
+            <button type="button" onClick={goHome}>
+              Back
+            </button>
+          )}
 
           <nav>
             <Link to="/">Home</Link>
