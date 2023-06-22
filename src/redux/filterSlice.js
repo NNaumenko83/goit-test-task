@@ -16,7 +16,7 @@ const filtersSlice = createSlice({
 });
 
 const persistConfig = {
-  key: "followedUsers",
+  key: "filters",
   storage,
 };
 
