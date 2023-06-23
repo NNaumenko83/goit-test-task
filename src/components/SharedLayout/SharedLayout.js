@@ -1,7 +1,6 @@
 // Imports
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  Container,
   HeaderContainer,
   Footer,
   Header,
@@ -9,8 +8,11 @@ import {
   Logo,
   Main,
   MainContainer,
+  FooterText,
+  FooterContainer,
 } from "./SharedLayout.styled";
 import { Suspense } from "react";
+import ButtonStyled from "components/Button/Button";
 
 const SharedLayout = () => {
   const location = useLocation();
@@ -24,12 +26,11 @@ const SharedLayout = () => {
     <>
       <Header>
         <HeaderContainer>
-          <Logo>GoIt Test Task</Logo>
-          {isTweetPage && (
-            <button type="button" onClick={goHome}>
-              Back
-            </button>
-          )}
+          <Logo>
+            <span style={{ color: "blue" }}>Follower</span>
+            <span style={{ color: "yellow" }}>Flow</span>
+          </Logo>
+          {isTweetPage && <ButtonStyled onClick={goHome}>Back</ButtonStyled>}
 
           <nav>
             <Link to="/">Home</Link>
@@ -46,9 +47,9 @@ const SharedLayout = () => {
       </Main>
 
       <Footer>
-        <Container>
-          <p>Footer</p>
-        </Container>
+        <FooterContainer>
+          <FooterText>Developed by Mykola Naumenko 2023</FooterText>
+        </FooterContainer>
       </Footer>
     </>
   );

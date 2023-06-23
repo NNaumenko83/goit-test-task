@@ -6,9 +6,13 @@ import {
   UserCard,
   UserInfoAndButtonContainer,
   UserInfoWrapper,
+  BackImage,
 } from "./UsersItem.styled";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import logo from "../../assets/Logo.svg";
+import imageBack from "../../assets/BackgroundImage.png";
 
 import {
   addFollowingUser,
@@ -62,6 +66,9 @@ export const UsersItem = ({ user, following }) => {
 
   return (
     <UserCard>
+      <img src={logo} alt="logo" />
+      <BackImage src={imageBack} alt="" />
+
       <CenterLine></CenterLine>
       <AvatarWrapper>
         <Avatar src={user.avatar} alt="user avatar" />

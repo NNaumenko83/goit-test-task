@@ -33,9 +33,11 @@ const Tweets = () => {
     <>
       <StatusFilter />
       <UsersList users={visibleUsers} />
-      <ButtonStyled type="button" onClick={onLoadMoreButtonClick}>
-        Load more
-      </ButtonStyled>
+      {page !== totalPage && (
+        <ButtonStyled type="button" onClick={onLoadMoreButtonClick}>
+          Load more
+        </ButtonStyled>
+      )}
     </>
   );
 };

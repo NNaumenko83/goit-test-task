@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const UserCard = styled.li`
   position: relative;
+  padding: 20px;
   width: 380px;
   height: 460px;
-  background-color: pink;
-
-  background: linear-gradient(
+  background-image: linear-gradient(
     114.99deg,
     #471ca9 -0.99%,
     #5736a3 54.28%,
     #4b2a99 78.99%
   );
+
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
 `;
@@ -86,4 +86,10 @@ export const UserInfoAndButtonContainer = styled.div`
   bottom: 36px;
   left: 50%;
   transform: translate(-50%, 0);
+`;
+
+export const BackImage = styled.img`
+  position: absolute;
+  top: 28px;
+  left: 36px;
 `;
