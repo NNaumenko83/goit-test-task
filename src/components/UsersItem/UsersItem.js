@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   AvatarWrapper,
@@ -7,7 +7,6 @@ import {
   UserInfoAndButtonContainer,
   UserInfoWrapper,
 } from "./UsersItem.styled";
-import { Button, ButtonStyled } from "components/Button/Button";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -16,17 +15,16 @@ import {
   deleteFollowingUser,
 } from "redux/followedUsersSlice";
 import { useDispatch } from "react-redux";
-import { useUsers } from "hooks/useUsers";
+import ButtonStyled from "components/Button/Button";
 
 export const UsersItem = ({ user, following }) => {
-  const { isFetching } = useUsers();
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false); // Стан для кожного UsersItem
 
   const addFollowerMutation = useMutation({
     mutationFn: increaseFollowers,
     onSuccess: () => {
-      // Invalidate and refetch
       dispatch(addFollowingUser(user));
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
@@ -35,18 +33,31 @@ export const UsersItem = ({ user, following }) => {
   const deleteFollowerMutation = useMutation({
     mutationFn: decreaseFollowers,
     onSuccess: () => {
-      // Invalidate and refetch
       dispatch(deleteFollowingUser(user.id));
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 
-  const onButtonFollowClick = () => {
-    addFollowerMutation.mutate(user);
+  const onButtonFollowClick = async () => {
+    setIsLoading(true);
+    try {
+      await addFollowerMutation.mutateAsync(user);
+    } catch (error) {
+      console.error("Error adding follower:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const onButtonUnFollowClick = () => {
-    deleteFollowerMutation.mutate(user);
+  const onButtonUnFollowClick = async () => {
+    setIsLoading(true);
+    try {
+      await deleteFollowerMutation.mutateAsync(user);
+    } catch (error) {
+      console.error("Error deleting follower:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -65,18 +76,18 @@ export const UsersItem = ({ user, following }) => {
             type="button"
             onClick={onButtonFollowClick}
             following={following}
-            loading={isFetching}
+            loading={isLoading}
           >
-            FOLLOW
+            {isLoading ? "LOADING" : "FOLLOW"}
           </ButtonStyled>
         ) : (
           <ButtonStyled
             type="button"
             onClick={onButtonUnFollowClick}
             following={following}
-            loading={isFetching}
+            loading={isLoading}
           >
-            FOLLOWING
+            {isLoading ? "LOADING" : "FOLLOWING"}
           </ButtonStyled>
         )}
       </UserInfoAndButtonContainer>
