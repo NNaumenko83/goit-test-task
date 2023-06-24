@@ -1,15 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import SharedLayout from "./SharedLayout/SharedLayout";
 import { lazy } from "react";
-
 import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { ToastContainer } from "react-toastify";
+
 import { store, persistor } from "redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
+import SharedLayout from "./SharedLayout/SharedLayout";
 
 const Home = lazy(() => import("../pages/Home/Home.js"));
 const Tweets = lazy(() => import("../pages/Tweets/Tweets.js"));
@@ -45,6 +46,20 @@ export const App = () => {
           <ReactQueryDevtools initialIsOpen={false} />
         </PersistGate>
       </Provider>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </PersistQueryClientProvider>
   );
 };

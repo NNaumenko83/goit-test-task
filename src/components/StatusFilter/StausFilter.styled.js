@@ -11,16 +11,20 @@ export const fadeIn = keyframes`
 `;
 
 export const DropdownContainer = styled.div`
-  position: absolute;
-  top: 80px;
-  right: 50%;
-  transform: translate(400px);
+  /* left: 0; */
 
   display: inline-block;
+
+  @media screen and (min-width: 768px) {
+    transform: translate(300px);
+    position: absolute;
+    z-index: 2;
+    right: 50%;
+  }
 `;
 
 export const DropdownButton = styled.button`
-  width: 200px;
+  width: 160px;
   background-color: #1b7ac8;
   color: white;
   padding: 10px;
@@ -40,7 +44,7 @@ export const DropdownContent = styled.div`
   display: ${({ open }) => (open ? "block" : "none")};
   position: absolute;
   background-color: #5ec9f8;
-  width: 200px;
+  width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   animation: ${fadeIn} 0.3s ease-in;
@@ -51,6 +55,7 @@ export const DropdownItem = styled.div`
   color: black;
   padding: 12px 16px;
   cursor: pointer;
+  border-radius: 10px;
 
   &:hover {
     background-color: #4ab3e9;

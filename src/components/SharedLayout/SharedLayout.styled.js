@@ -82,7 +82,7 @@ export const Logo = styled.p`
   margin: 0;
 `;
 
-export const Link = styled(NavLink)`
+export const NavigateLink = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
@@ -150,7 +150,8 @@ export const FooterContainer = styled.div`
 export const Main = styled.main`
   flex-grow: 1;
 
-  background: radial-gradient(circle at center, #7107d9, #1b7ac8);
+  background-image: radial-gradient(circle at center, #7107d9, #1b7ac8);
+  background-attachment: fixed;
 `;
 
 export const FooterText = styled.p`

@@ -1,18 +1,19 @@
 // Imports
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   HeaderContainer,
   Footer,
   Header,
-  Link,
   Logo,
   Main,
   MainContainer,
   FooterText,
   FooterContainer,
+  NavigateLink,
 } from "./SharedLayout.styled";
 import { Suspense } from "react";
 import ButtonStyled from "components/Button/Button";
+import { Hearts } from "react-loader-spinner";
 
 const SharedLayout = () => {
   const location = useLocation();
@@ -26,21 +27,35 @@ const SharedLayout = () => {
     <>
       <Header>
         <HeaderContainer>
-          <Logo>
-            <span style={{ color: "blue" }}>Follower</span>
-            <span style={{ color: "yellow" }}>Flow</span>
-          </Logo>
+          <Link to="/">
+            <Logo>
+              <span style={{ color: "blue" }}>Follower</span>
+              <span style={{ color: "yellow" }}>Flow</span>
+            </Logo>
+          </Link>
           {isTweetPage && <ButtonStyled onClick={goHome}>Back</ButtonStyled>}
 
           <nav>
-            <Link to="/">Home</Link>
-            <Link to="/tweets">Tweets</Link>
+            <NavigateLink to="/">Home</NavigateLink>
+            <NavigateLink to="/tweets">Tweets</NavigateLink>
           </nav>
         </HeaderContainer>
       </Header>
       <Main>
         <MainContainer>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <Hearts
+                height="200"
+                width="200"
+                color="#4fa94d"
+                ariaLabel="hearts-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            }
+          >
             <Outlet />
           </Suspense>
         </MainContainer>

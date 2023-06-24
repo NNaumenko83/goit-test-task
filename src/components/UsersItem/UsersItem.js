@@ -20,11 +20,12 @@ import {
 } from "redux/followedUsersSlice";
 import { useDispatch } from "react-redux";
 import ButtonStyled from "components/Button/Button";
+import { toast } from "react-toastify";
 
 export const UsersItem = ({ user, following }) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false); // Стан для кожного UsersItem
+  const [isLoading, setIsLoading] = useState(false);
 
   const addFollowerMutation = useMutation({
     mutationFn: increaseFollowers,
@@ -47,7 +48,16 @@ export const UsersItem = ({ user, following }) => {
     try {
       await addFollowerMutation.mutateAsync(user);
     } catch (error) {
-      console.error("Error adding follower:", error);
+      toast.error("Something went wrong!!!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +68,16 @@ export const UsersItem = ({ user, following }) => {
     try {
       await deleteFollowerMutation.mutateAsync(user);
     } catch (error) {
-      console.error("Error deleting follower:", error);
+      toast.error("Something went wrong!!!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } finally {
       setIsLoading(false);
     }
