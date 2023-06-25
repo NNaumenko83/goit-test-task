@@ -1,10 +1,7 @@
-// import { Task } from "components/Task/Task";
+import PropTypes from "prop-types";
 import { UsersItem } from "components/UsersItem/UsersItem";
-
 import { useSelector } from "react-redux";
-
 import { UsersListStyled } from "./UsersList.styled";
-
 import { selectFollowingUsers } from "redux/selectors";
 
 export const UsersList = ({ users }) => {
@@ -22,4 +19,16 @@ export const UsersList = ({ users }) => {
       </UsersListStyled>
     )
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      user: PropTypes.string.isRequired,
+      tweets: PropTypes.number.isRequired,
+      followers: PropTypes.number.isRequired,
+      avatar: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

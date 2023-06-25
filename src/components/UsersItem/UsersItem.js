@@ -10,6 +10,7 @@ import {
 } from "./UsersItem.styled";
 import { increaseFollowers, decreaseFollowers } from "services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import PropTypes from "prop-types";
 
 import logo from "../../assets/Logo.svg";
 import imageBack from "../../assets/BackgroundImage.png";
@@ -119,4 +120,15 @@ export const UsersItem = ({ user, following }) => {
       </UserInfoAndButtonContainer>
     </UserCard>
   );
+};
+
+UsersItem.propTypes = {
+  user: PropTypes.shape({
+    user: PropTypes.string.isRequired,
+    tweets: PropTypes.number.isRequired,
+    followers: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  following: PropTypes.bool.isRequired,
 };

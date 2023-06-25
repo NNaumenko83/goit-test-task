@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   DropdownContainer,
@@ -57,4 +58,8 @@ export const StatusFilter = ({ changeStatus }) => {
       </DropdownContent>
     </DropdownContainer>
   );
+};
+
+StatusFilter.propTypes = {
+  changeStatus: PropTypes.func.isRequired,
 };
