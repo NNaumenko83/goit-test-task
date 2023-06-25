@@ -16,7 +16,7 @@ export const DropdownContainer = styled.div`
   display: inline-block;
 
   @media screen and (min-width: 768px) {
-    transform: translate(300px);
+    transform: translate(360px);
     position: absolute;
     z-index: 2;
     right: 50%;

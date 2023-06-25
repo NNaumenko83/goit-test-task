@@ -3,9 +3,6 @@ import { UsersItem } from "components/UsersItem/UsersItem";
 
 import { useSelector } from "react-redux";
 
-// import { statusFilters } from "redux/constants";
-// import { getStatusFilter } from "redux/selectors";
-
 import { UsersListStyled } from "./UsersList.styled";
 
 import { selectFollowingUsers } from "redux/selectors";

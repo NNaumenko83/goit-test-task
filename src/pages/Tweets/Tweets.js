@@ -22,6 +22,7 @@ const Tweets = () => {
   const usersPerPage = 3;
 
   const [page, setPage] = useState(1);
+
   const visibleUsers = [...filteredUsers].splice(0, page * usersPerPage);
 
   const totalPage = Math.ceil(filteredUsers.length / usersPerPage);
@@ -51,7 +52,7 @@ const Tweets = () => {
   return (
     <>
       <StatusFilter />
-      {visibleUsers.length === 0 ? (
+      {visibleUsers.length === 0 && !isLoading ? (
         <Text>
           Your subscriptions are as empty as a blank canvas. Seize the
           opportunity to fill your digital world with wonders untold! Unleash
@@ -72,7 +73,7 @@ const Tweets = () => {
           visible={true}
         />
       )}
-      {page !== totalPage && filteredUsers.length > 0 && (
+      {page < totalPage && filteredUsers.length > 3 && (
         <ButtonStyled type="button" onClick={onLoadMoreButtonClick}>
           Load more
         </ButtonStyled>
