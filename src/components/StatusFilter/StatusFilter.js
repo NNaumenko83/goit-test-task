@@ -10,7 +10,7 @@ import { statusFilters } from "redux/constants";
 import { setStatusFilter } from "redux/filterSlice";
 import { selectStatusFilter } from "redux/selectors";
 
-export const StatusFilter = () => {
+export const StatusFilter = ({ changeStatus }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ export const StatusFilter = () => {
   const handleItemClick = (statusFilter) => {
     dispatch(setStatusFilter(statusFilter));
     setIsOpen(false);
+    changeStatus();
   };
 
   const handleClickOutside = (event) => {

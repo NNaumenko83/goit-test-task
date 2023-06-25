@@ -49,9 +49,13 @@ const Tweets = () => {
     return;
   }
 
+  const changeStatusFilter = () => {
+    setPage(1);
+  };
+
   return (
     <>
-      <StatusFilter />
+      <StatusFilter changeStatus={changeStatusFilter} />
       {visibleUsers.length === 0 && !isLoading ? (
         <Text>
           Your subscriptions are as empty as a blank canvas. Seize the
